@@ -1,0 +1,135 @@
+// Core variables and mixins
+$brand-primary: #B34D4D;
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+
+// Reset and dependencies
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/print";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
+
+// Core CSS
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/type";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/code";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/grid";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/tables";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/forms";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+
+// Components
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/navs";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/navbar";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/breadcrumbs";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/pagination";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/pager";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/labels";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/badges";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/thumbnails";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/alerts";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/media";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/list-group";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/panels";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/responsive-embed";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/wells";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/close";
+
+// Components w/ JavaScript
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/modals";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/tooltip";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/popovers";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/carousel";
+
+// Utility classes
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/utilities";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
+
+.main{
+	padding:2em;
+}
+
+.navbar {
+	margin-bottom: 0;
+	min-height: 100px;
+}
+
+.navbar-nav > li > a, .navbar-brand {
+	line-height: 70px;
+}
+
+main#welcome {
+	height:100vh;
+	background: url('../img/seamless_paper_texture.png') repeat;
+}
+
+section#catalogs {
+	min-height: 100vh;
+	height:auto;
+	padding:5em 0;
+}
+
+div.pointer {
+	position: absolute;
+	bottom:0;
+	left: 0;
+	width:100%;
+}
+
+.footer {
+	background: #333;
+	color:#b1b0b0;
+	height: 100px;
+    padding-top: 45px;
+}
+
+.panel {
+	margin-bottom: 50px;
+}
+
+.card {
+	position: relative;
+	display: block;
+	background: #95a5a6;
+	opacity: 0.75;
+	color: #fff;
+	margin:0 15px 20px 15px;
+	border-radius: 4px;
+	padding: 20px 15px;
+}
+
+.card:hover {
+	opacity: 1;
+}
+
+.card.maroon {
+	background: #993333;
+}
+
+.card > a {
+	color: #fff;
+}
+
+.card-heading {
+	font-size: 18px;
+	padding: 0 10px 10px 0;
+}
+
+.card-icon {
+	font-size: 48px;
+}
+
+.card-icon.dark {
+	background: #333;
+	padding: 15px;
+}
+
+.card-icon.round {
+	border-radius: 100%;
+}
