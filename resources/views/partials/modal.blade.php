@@ -16,15 +16,9 @@
 		      	<div class="form-group col-md-12">
 		      		<label for="catalog-year">Catalog Year</label>
 		      		<select name="catalog-year" id="catalog-year" class="form-control" value="{{ old('catalog-year') }}">
-		      			<option value="2012 - 2013">2012 - 2013</option>
-		      			<option value="2013 - 2014">2013 - 2014</option>
-		      			<option value="2014 - 2015">2014 - 2015</option>
-		      			<option value="2015 - 2016">2015 - 2016</option>
-		      			<option value="2016 - 2017" selected = "">2016 - 2017</option>
-		      			<option value="2017 - 2018">2017 - 2018</option>
-		      			<option value="2018 - 2019">2018 - 2019</option>
-		      			<option value="2019 - 2020">2019 - 2020</option>
-		      			<option value="2020 - 2021">2020 - 2021</option>
+		      			@foreach ($availableCatalogYears as $year)
+		      				<option value="{{ $year->start_year }}" selected="">{{ $year->start_year }}-{{ $year->start_year + 1 }}</option>
+		      			@endforeach
 		      		</select>
 		      	</div>
 

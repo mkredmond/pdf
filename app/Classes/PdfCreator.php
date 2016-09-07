@@ -29,14 +29,22 @@ class PdfCreator
     protected $school;
 
     /**
+     * the year for the catalog currenting being created
+     * @var [type]
+     */
+    protected $year;
+    /**
      * Initializes class.
      *
      * @param string $school
      */
-    public function __construct($school = 'undergraduate')
+    public function __construct($school = 'undergraduate', $year = null)
     {
+        ($year == null) ? $this->year = date('Y') : $this->year = $year;
         $this->school = $school;
-        $this->links = Link::whereType($school)->get();
+        $this->links = Link::where('type','=',$school)
+                            ->where('start_year','=', $this->year)
+                            ->get();
     }
 
     /**
@@ -55,7 +63,9 @@ class PdfCreator
         ]);
 
         foreach ($this->links as $key => $link) {
-            $dom->loadFromUrl($link->url);
+            if( ! $dom->loadFromUrl($link->url)){
+                dd('Could not load link: ' . $link->url);
+            }
 
             $html = $dom->find('#yui-main');
 
@@ -97,7 +107,8 @@ class PdfCreator
         $catalog->name = $name;
         $catalog->pdf_path = $this->uid . DIRECTORY_SEPARATOR . $this->school . ".pdf";
         $catalog->html_path = $this->uid . DIRECTORY_SEPARATOR . $this->school . ".html";
-        $catalog->year = date("Y") . " - " . (date("Y") + 1);
+        $catalog->start_year = $this->year;
+        $catalog->end_year = ($this->year + 1);
 
         $catalog->save();
 

@@ -6,6 +6,7 @@
 	  <table class="table">
 	    <thead>
 	    	<th>ID</th>
+	    	<th>Catalog Year</th>
 	    	<th>Created On</th>
 	    	<th></th>
 	    </thead>
@@ -13,10 +14,11 @@
 	    	@foreach ($graduate as $grad)	
 	    		<tr>
 	    			<td>{{ $grad->id }}</td>
+	    			<td>{{ $grad->start_year }}-{{ $grad->start_year + 1 }}</td>
 	    			<td>{{ $grad->created_at }}</td>
 	    			<td>
-						<div class="btn-group btn-block">
-						  <a type="button" href="{{ url($grad->id) }}" class="btn home btn-primary">View</a>
+						<div class="btn-group pull-right">
+						  <a type="button" href="{{ url($grad->id) }}" target="_blank" class="btn home btn-primary">View</a>
 						  <a type="button" class="btn home btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						    <span class="caret"></span>
 						    <span class="sr-only">Toggle Dropdown</span>
