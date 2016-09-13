@@ -85,9 +85,10 @@ class PdfCreator
      */
     public function createPdf()
     {
+        
         chdir(public_path('assets') . DIRECTORY_SEPARATOR . $this->uid);
         // shell_exec("htmldoc --quiet --color --no-strict -t pdf --outfile $this->school.pdf $this->school.html");
-        echo exec("wkhtmltopdf -q $this->school.html $this->school.pdf ");
+        echo exec("wkhtmltopdf -q -s Letter $this->school.html $this->school.pdf ");
 
         return $this;
     }

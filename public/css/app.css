@@ -5796,7 +5796,10 @@ div.pointer {
   margin-bottom: 1rem; }
 
 #sgc, #suc {
-  padding: 10rem 0;
-  margin-top: 30vh; }
+  padding: 7rem 0; }
+
+@media screen and (min-width: 993px) {
+  #sgc, #suc {
+    margin-top: 30vh; } }
 
 /*# sourceMappingURL=app.css.map */
