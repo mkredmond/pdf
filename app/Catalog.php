@@ -10,8 +10,6 @@ class Catalog extends Model
 
     protected $dates = ['created_at', 'updated_at'];
 
-    // protected $dateFormat = "M D, YYYY";
-
     public $incrementing = false;
 
 }

@@ -8,12 +8,12 @@ $('button.create-pdf').on('click', function(){
 }); 
  
 $('a#suc').on('click', function(){
-	$('#create-pdf-form').attr('action', '/create/undergraduate');
+	$('#create-pdf-form').attr('action', 'create/undergraduate');
 	$('.modal-title').html("Create undergraduate catalog");
 });
 
 $('a#sgc').on('click', function(){
-	$('#create-pdf-form').attr('action', '/create/graduate');
+	$('#create-pdf-form').attr('action', 'create/graduate');
 	$('.modal-title').html("Create graduate catalog");
 });
 

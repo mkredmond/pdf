@@ -2,8 +2,8 @@
 @section('content')
 	<main id="welcome">
 		<div class="main text-center container">
-			<span class="col-md-6"><a data-toggle="modal" data-target=".create-pdf-modal" id="sgc" class="btn btn-lg btn-block btn-primary">Create Graduate Catalog</a></span>
-			<span class="col-md-6"><a data-toggle="modal" data-target=".create-pdf-modal" id="suc" class="btn btn-lg btn-block btn-default">Create Undergraduate Catalog</a></span>
+			<span class="col-md-6"><a data-toggle="modal" data-target=".create-pdf-modal" id="sgc" class="btn btn-lg btn-block btn-primary"><i style="font-size:40px" class="fa fa-graduation-cap" aria-hidden="true"></i><h3>Create Graduate Catalog</h3></a></span>
+            <span class="col-md-6"><a data-toggle="modal" data-target=".create-pdf-modal" id="suc" class="btn btn-lg btn-block btn-default"><i style="font-size:40px" class="fa fa-book" aria-hidden="true"></i><h3>Create Undergraduate Catalog</h3></a></span>
 
 			<div class="pointer text-center">
 				<a href="#catalogs">

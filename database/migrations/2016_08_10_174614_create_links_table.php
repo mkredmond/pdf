@@ -16,7 +16,8 @@ class CreateLinksTable extends Migration
             $table->increments('id');
             $table->string('url', 255);
             $table->string('type', 30);
-            $table->string('year');
+            $table->integer('start_year');
+            $table->integer('end_year');
             $table->timestamps();
             $table->softDeletes();
         });

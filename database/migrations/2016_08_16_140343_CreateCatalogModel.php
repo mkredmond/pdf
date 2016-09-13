@@ -17,7 +17,8 @@ class CreateCatalogModel extends Migration
             $table->string('name', 255);
             $table->string('pdf_path', 255)->unique();
             $table->string('html_path', 255)->unique();
-            $table->string('year');
+            $table->integer('start_year');
+            $table->integer('end_year');
             $table->string('type', 30);
             $table->timestamps();
         });

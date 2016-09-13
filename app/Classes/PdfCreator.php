@@ -29,14 +29,22 @@ class PdfCreator
     protected $school;
 
     /**
+     * the year for the catalog currenting being created
+     * @var [type]
+     */
+    protected $year;
+    /**
      * Initializes class.
      *
      * @param string $school
      */
-    public function __construct($school = 'undergraduate')
+    public function __construct($school = 'undergraduate', $year = null)
     {
-        $this->school = $school;
-        $this->links = Link::whereType($school)->get();
+        ($year == null) ? $this->year = date('Y') : $this->year = $year;
+        $this->school                 = $school;
+        $this->links                  = Link::where('type', '=', $school)
+                                        ->where('start_year', '=', $this->year)
+                                        ->get();
     }
 
     /**
@@ -51,11 +59,13 @@ class PdfCreator
 
         $dom->setOptions([
             'removeScripts' => true,
-            'removeStyles' => true,
+            'removeStyles'  => true,
         ]);
 
         foreach ($this->links as $key => $link) {
-            $dom->loadFromUrl($link->url);
+            if (!$dom->loadFromUrl($link->url)) {
+                dd('Could not load link: ' . $link->url);
+            }
 
             $html = $dom->find('#yui-main');
 
@@ -65,9 +75,7 @@ class PdfCreator
             }
         }
 
-        Storage::disk('public')->prepend($this->uid . DIRECTORY_SEPARATOR . $this->school . ".html", 
-            '<link rel="stylesheet" type="text/css" href="https://dl.dropboxusercontent.com/u/49693340/print.css">');
-
+        $this->createCoverPage();
         return $this;
     }
 
@@ -77,10 +85,11 @@ class PdfCreator
      */
     public function createPdf()
     {
+        
         chdir(public_path('assets') . DIRECTORY_SEPARATOR . $this->uid);
         // shell_exec("htmldoc --quiet --color --no-strict -t pdf --outfile $this->school.pdf $this->school.html");
-        echo exec("wkhtmltopdf -q $this->school.html $this->school.pdf ");
-        
+        echo exec("wkhtmltopdf -q -s Letter $this->school.html $this->school.pdf ");
+
         return $this;
     }
 
@@ -92,12 +101,13 @@ class PdfCreator
     {
         $catalog = new Catalog;
 
-        $catalog->id = $this->uid;
-        $catalog->type = $this->school;
-        $catalog->name = $name;
-        $catalog->pdf_path = $this->uid . DIRECTORY_SEPARATOR . $this->school . ".pdf";
-        $catalog->html_path = $this->uid . DIRECTORY_SEPARATOR . $this->school . ".html";
-        $catalog->year = date("Y") . " - " . (date("Y") + 1);
+        $catalog->id         = $this->uid;
+        $catalog->type       = $this->school;
+        $catalog->name       = $name;
+        $catalog->pdf_path   = $this->uid . DIRECTORY_SEPARATOR . $this->school . ".pdf";
+        $catalog->html_path  = $this->uid . DIRECTORY_SEPARATOR . $this->school . ".html";
+        $catalog->start_year = $this->year;
+        $catalog->end_year   = ($this->year + 1);
 
         $catalog->save();
 
@@ -105,7 +115,7 @@ class PdfCreator
     }
 
     /**
-     * Returns the unique id for the 
+     * Returns the unique id for the
      * @return string
      */
     public function getUid()
@@ -140,7 +150,7 @@ class PdfCreator
     }
 
     /**
-     * Finds specific tags and adds inline styles to them 
+     * Finds specific tags and adds inline styles to them
      *
      * @param Dom $content
      */
@@ -148,7 +158,7 @@ class PdfCreator
     {
         $styleMap = [
             'table' => 'width:100%;background-color:#D5D5D5;padding:8px 10px;',
-            'td' => 'padding:8px 10px; border-bottom: solid 1px #bfbfbf; border-right:solid 1px #bfbfbf;',
+            'td'    => 'padding:8px 10px; border-bottom: solid 1px #bfbfbf; border-right:solid 1px #bfbfbf;',
         ];
 
         foreach ($styleMap as $key => $style) {
@@ -167,11 +177,18 @@ class PdfCreator
      */
     protected function generateUid()
     {
-        return $this->uid = md5(time().uniqid());
+        return $this->uid = md5(time() . uniqid());
     }
 
-    protected function addGlobalStyle(){
+    protected function createCoverPage()
+    {
+        $coverPageHtml = '<link rel="stylesheet" type="text/css" href="https://dl.dropboxusercontent.com/u/49693340/print.css">
+                          <div style="padding-top:400px;margin-bottom:800px;text-align:center;"><h1>St. John Fisher College</h1>
+                          <h3>' . $this->year . '-' . ($this->year + 1) . '</h3><p>' . ucwords($this->school) . ' Catalog</p></div>';
+        
+        Storage::disk('public')->prepend($this->uid . DIRECTORY_SEPARATOR . $this->school . ".html", $coverPageHtml);
 
+        return $this;
     }
 
 }

@@ -5792,4 +5792,14 @@ div.pointer {
 .card-icon.round {
   border-radius: 100%; }
 
+.btn-top {
+  margin-bottom: 1rem; }
+
+#sgc, #suc {
+  padding: 7rem 0; }
+
+@media screen and (min-width: 993px) {
+  #sgc, #suc {
+    margin-top: 30vh; } }
+
 /*# sourceMappingURL=app.css.map */

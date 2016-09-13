@@ -7,12 +7,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Catalog Creator 3000</a>
+      <a class="navbar-brand" href="{{ url('/') }}">Catalog Creator 3000</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="{{ set_active('/') }}"><a href="/">Home</a></li>
-        <li class="{{ set_active('manage') }}"><a href="manage">Manage</a></li>
+        <li class="{{ set_active('/') }}"><a href="{{ url('/') }}">Home</a></li>
+        <li class="{{ set_active('manage') }}"><a href="{{ url('manage') }}">Manage</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->

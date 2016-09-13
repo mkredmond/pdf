@@ -1,6 +1,5 @@
 <?php 
 
-
 /**
  * Checks if current link is active
  * @param string $uri
@@ -9,6 +8,13 @@
 function set_active($uri)
 {
     return Request::is($uri) ? 'active' : '';
+}
+
+function setActiveSelect($selectedYear)
+{
+	if(Request::has('year')){
+		return Request::input('year') == $selectedYear ? 'selected=""' : Request::input('year');
+	}
 }
 
 /**
