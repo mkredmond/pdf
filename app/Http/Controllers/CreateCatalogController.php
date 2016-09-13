@@ -14,13 +14,15 @@ class CreateCatalogController extends Controller
      */
     public function graduate(Request $request)
     {
-        $name = $request->input('catalog-name') || "default";
-        $year = $request->input('catalog-year') || date('Y');
+        $name = $request->input('catalog-name');
+        $year = $request->input('catalog-year');
+
+        dd($name, $year);
 
         $pdf = new PdfCreator('graduate', $year);
         $pdf->generateHtmlFile()->createPdf()->save($name);
 
-        $message = "<span>Your PDF can be viewed here</span><p><a href='" . $pdf->getUid() . "/$name.pdf>$name.pdf</a></p>'";
+        $message = "<span>Your PDF can be viewed here</span><p><a target='_blank' href='" . $pdf->getUid() . "/$name.pdf'>$name.pdf</a></p>'";
         flash()->success('PDF created', $message);
 
         return back();

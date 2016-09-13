@@ -33,7 +33,6 @@
 	    	@endforeach
 	    </tbody>
 	  </table>
-	</div>
 @else 
 	<div class="panel-body"><h5>There are currently no Undergraduate catalogs.</h5></div>
 @endif

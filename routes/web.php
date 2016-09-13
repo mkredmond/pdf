@@ -7,6 +7,7 @@ Route::get('/', function () {
     $undergraduate = Catalog::whereType('undergraduate')->orderBy('created_at', 'ASC')->get();
     $graduate      = Catalog::whereType('graduate')->orderBy('created_at', 'DESC')->get();
     $availableCatalogYears = Link::select('start_year')->distinct()->get();
+
     return view('home', compact('undergraduate', 'graduate', 'availableCatalogYears'));
 });
 
