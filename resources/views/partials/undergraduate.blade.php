@@ -15,7 +15,7 @@
 	    		<tr>
 	    			<td>{{ ucwords($ugrad->name) }}</td>
 	    			<td>{{ $ugrad->start_year }}-{{ $ugrad->start_year + 1 }}</td>
-	    			<td class="visible-md visible-lg">{{ $ugrad->created_at->toDayDateTimeString() }}</td>
+	    			<td class="visible-md visible-lg">{{ $ugrad->created_at->setTimezone('America/New_York')->toDayDateTimeString() }}</td>
 	    			<td>
 	    				<div class="btn-group pull-right">
 						  <a type="button" href="{{ url($ugrad->id) }}" target="_blank" class="btn home btn-primary">View</a>
