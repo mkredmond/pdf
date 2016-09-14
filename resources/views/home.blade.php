@@ -7,7 +7,7 @@
 
 			<div class="pointer text-center">
 				<a href="#catalogs">
-					<span>See below for historical catalogs</span>
+					<span>See below for historical catalogs...</span>
 					<p>
 						<i style="font-size:40px;" class="fa fa-chevron-down" aria-hidden="true"></i>
 					</p>
