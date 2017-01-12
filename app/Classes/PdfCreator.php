@@ -43,8 +43,8 @@ class PdfCreator
         ($year == null) ? $this->year = date('Y') : $this->year = $year;
         $this->school                 = $school;
         $this->links                  = Link::where('type', '=', $school)
-                                        ->where('start_year', '=', $this->year)
-                                        ->get();
+            ->where('start_year', '=', $this->year)
+            ->get();
     }
 
     /**
@@ -85,10 +85,9 @@ class PdfCreator
      */
     public function createPdf()
     {
-        
         chdir(public_path('assets') . DIRECTORY_SEPARATOR . $this->uid);
         // shell_exec("htmldoc --quiet --color --no-strict -t pdf --outfile $this->school.pdf $this->school.html");
-        echo exec("wkhtmltopdf -q -s Letter $this->school.html $this->school.pdf ");
+        echo exec("wkhtmltopdf -q $this->school.html $this->school.pdf ");
 
         return $this;
     }
@@ -180,12 +179,16 @@ class PdfCreator
         return $this->uid = md5(time() . uniqid());
     }
 
+    /**
+     * Creates a cover page for a catalog; Imports external CSS
+     * @return $this
+     */
     protected function createCoverPage()
     {
         $coverPageHtml = '<link rel="stylesheet" type="text/css" href="https://dl.dropboxusercontent.com/u/49693340/print.css">
                           <div style="padding-top:400px;margin-bottom:800px;text-align:center;"><h1>St. John Fisher College</h1>
                           <h3>' . $this->year . '-' . ($this->year + 1) . '</h3><p>' . ucwords($this->school) . ' Catalog</p></div>';
-        
+
         Storage::disk('public')->prepend($this->uid . DIRECTORY_SEPARATOR . $this->school . ".html", $coverPageHtml);
 
         return $this;
